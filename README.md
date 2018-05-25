@@ -2,7 +2,7 @@
 
 A simple text rendering library for the [Veldrid](https://github.com/mellinoe/veldrid) library and .NET Core.
 
-![Preview](https://github.com/drogoganor/TextRender.Veldrid/blob/master/images/Example.png)
+![Preview](https://github.com/drogoganor/TextRender/blob/master/images/Example.png)
 
 TextRender is available on NuGet:
 
