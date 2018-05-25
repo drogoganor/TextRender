@@ -18,8 +18,7 @@ namespace GettingStarted
         private static Shader _vertexShader;
         private static Shader _fragmentShader;
         private static Pipeline _pipeline;
-
-
+        
         private static TextRender.TextRenderer textRenderer;
         private static Text text;
         private static Text text2;

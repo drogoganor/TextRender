@@ -5,6 +5,7 @@ namespace TextRender.Shaders
     internal class TextShader : ShaderAbstract
     {
         public DeviceBuffer ProjectionBuffer;
+        public DeviceBuffer PositionBuffer;
         public ResourceLayout ProjViewLayout;
         public ResourceLayout TextureLayout;
 
@@ -18,10 +19,12 @@ namespace TextRender.Shaders
                         new VertexElementDescription("Color", VertexElementSemantic.Color, VertexElementFormat.Float4));
 
             ProjectionBuffer = factory.CreateBuffer(new BufferDescription(64, BufferUsage.UniformBuffer));
+            PositionBuffer = factory.CreateBuffer(new BufferDescription(16, BufferUsage.UniformBuffer));
 
             ProjViewLayout = AddDisposable(factory.CreateResourceLayout(
                 new ResourceLayoutDescription(
-                    new ResourceLayoutElementDescription("Projection", ResourceKind.UniformBuffer, ShaderStages.Vertex))
+                    new ResourceLayoutElementDescription("Projection", ResourceKind.UniformBuffer, ShaderStages.Vertex),
+                    new ResourceLayoutElementDescription("Position", ResourceKind.UniformBuffer, ShaderStages.Vertex))
                     ));
 
             TextureLayout = AddDisposable(factory.CreateResourceLayout(
@@ -31,7 +34,8 @@ namespace TextRender.Shaders
 
             ProjViewSet = AddDisposable(factory.CreateResourceSet(new ResourceSetDescription(
                 ProjViewLayout,
-                ProjectionBuffer)));
+                ProjectionBuffer,
+                PositionBuffer)));
         }
 
         public void UpdateBuffers()

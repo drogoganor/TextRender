@@ -16,17 +16,18 @@ struct TextRender_Resources_Text_FragmentInput
 
 struct ShaderContainer {
 constant float4x4& Projection;
+constant float4& Position;
 
 ShaderContainer(
-constant float4x4& Projection_param
+constant float4x4& Projection_param, constant float4& Position_param
 )
 :
-Projection(Projection_param)
+Projection(Projection_param), Position(Position_param)
 {}
 TextRender_Resources_Text_FragmentInput VS( TextRender_Resources_Text_VertexInput input)
 {
     TextRender_Resources_Text_FragmentInput output;
-    float4 worldPosition = Projection * float4(float4(input.Position, 0, 1));
+    float4 worldPosition = Projection * float4(float4(input.Position, 0, 1) + Position);
     output.SystemPosition = worldPosition;
     output.Color = input.Color;
     output.TexCoords = input.TexCoords;
@@ -36,7 +37,7 @@ TextRender_Resources_Text_FragmentInput VS( TextRender_Resources_Text_VertexInpu
 
 };
 
-vertex TextRender_Resources_Text_FragmentInput VS(TextRender_Resources_Text_VertexInput input [[ stage_in ]], constant float4x4 &Projection [[ buffer(0) ]])
+vertex TextRender_Resources_Text_FragmentInput VS(TextRender_Resources_Text_VertexInput input [[ stage_in ]], constant float4x4 &Projection [[ buffer(0) ]], constant float4 &Position [[ buffer(1) ]])
 {
-return ShaderContainer(Projection).VS(input);
+return ShaderContainer(Projection, Position).VS(input);
 }

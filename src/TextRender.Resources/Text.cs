@@ -10,6 +10,8 @@ namespace TextRender.Resources
     {
         [ResourceSet(0)]
         public Matrix4x4 Projection;
+        [ResourceSet(0)]
+        public Vector4 Position;
         [ResourceSet(1)]
         public Texture2DResource SurfaceTexture;
         [ResourceSet(1)]
@@ -19,7 +21,7 @@ namespace TextRender.Resources
         public FragmentInput VS(VertexInput input)
         {
             FragmentInput output;
-            var worldPosition = Mul(Projection, new Vector4(input.Position, 0, 1));
+            var worldPosition = Mul(Projection, new Vector4(input.Position, 0, 1) + Position);
             output.SystemPosition = worldPosition;
             output.Color = input.Color;
             output.TexCoords = input.TexCoords;

@@ -45,10 +45,10 @@ namespace TextRender
                 BufferUsage.IndexBuffer);
             indexBuffer = AddDisposable(factory.CreateBuffer(ibDescription));
 
-            var topLeft = new Vector2(Position.X, Position.Y);
-            var topRight = new Vector2(Position.X + Size.X, Position.Y);
-            var bottomLeft = new Vector2(Position.X, Position.Y + Size.Y);
-            var bottomRight = new Vector2(Position.X + Size.X, Position.Y + Size.Y);
+            var topLeft = new Vector2(0, 0);
+            var topRight = new Vector2(0 + Size.X, 0);
+            var bottomLeft = new Vector2(0, 0 + Size.Y);
+            var bottomRight = new Vector2(0 + Size.X, 0 + Size.Y);
 
             VertexPositionTextureColor[] quadVertices =
             {
@@ -77,13 +77,12 @@ namespace TextRender
         {
             var cl = _renderer.CommandList;
 
-            // Set all relevant state to draw our quad.
+            cl.UpdateBuffer(_renderer.Shader.PositionBuffer, 0, new Vector4(Position, 0, 0));
             cl.SetVertexBuffer(0, vertexBuffer);
             cl.SetIndexBuffer(indexBuffer, IndexFormat.UInt16);
             cl.SetGraphicsResourceSet(0, _renderer.Shader.ProjViewSet);
             cl.SetGraphicsResourceSet(1, textureSet);
-
-            // Issue a Draw command for a single instance with 4 indices.
+            
             cl.DrawIndexed(
                 indexCount: (uint)4,
                 instanceCount: 1,

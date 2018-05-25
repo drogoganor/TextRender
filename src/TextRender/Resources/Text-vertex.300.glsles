@@ -28,11 +28,16 @@ layout(std140) uniform Projection
     mat4 field_Projection;
 };
 
+layout(std140) uniform Position
+{
+    vec4 field_Position;
+};
+
 
 TextRender_Resources_Text_FragmentInput VS( TextRender_Resources_Text_VertexInput input_)
 {
     TextRender_Resources_Text_FragmentInput output_;
-    vec4 worldPosition = field_Projection * vec4(input_.Position, 0, 1);
+    vec4 worldPosition = field_Projection * vec4(input_.Position, 0, 1) + field_Position;
     output_.SystemPosition = worldPosition;
     output_.Color = input_.Color;
     output_.TexCoords = input_.TexCoords;
