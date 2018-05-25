@@ -1,0 +1,85 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>TextRender.Veldrid</Title>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>DMW</Authors>
+    <Company />
+    <Product>TextRender.Veldrid</Product>
+    <Description>A simple text rendering library for Veldrid and .NET Core.</Description>
+    <PackageProjectUrl>https://github.com/drogoganor/TextRender</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/drogoganor/TextRender.git</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>veldrid, text</PackageTags>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Text-fragment.300.glsles" />
+    <None Remove="Resources\Text-fragment.330.glsl" />
+    <None Remove="Resources\Text-fragment.450.glsl" />
+    <None Remove="Resources\Text-fragment.hlsl.bytes" />
+    <None Remove="Resources\Text-fragment.metal" />
+    <None Remove="Resources\Text-vertex.300.glsles" />
+    <None Remove="Resources\Text-vertex.330.glsl" />
+    <None Remove="Resources\Text-vertex.450.glsl" />
+    <None Remove="Resources\Text-vertex.hlsl.bytes" />
+    <None Remove="Resources\Text-vertex.metal" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Text-fragment.300.glsles">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Text-fragment.330.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Text-fragment.450.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Text-fragment.hlsl.bytes">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Text-fragment.metal">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Text-vertex.300.glsles">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Text-vertex.330.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Text-vertex.450.glsl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Text-vertex.hlsl.bytes">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Text-vertex.metal">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SixLabors.Core" Version="1.0.0-ci0007" />
+    <PackageReference Include="SixLabors.Fonts" Version="1.0.0-ci0022" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-dev001351" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-dev001351" />
+    <PackageReference Include="SixLabors.Shapes" Version="1.0.0-ci0018" />
+    <PackageReference Include="SixLabors.Shapes.Text" Version="1.0.0-ci0018" />
+    <PackageReference Include="Veldrid" Version="4.2.0" />
+  </ItemGroup>
+
+</Project>
