@@ -18,11 +18,14 @@ namespace TextRender
         public TextAlignment TextAlignment { get; set; }
         public RgbaFloat Color { get; set; } = RgbaFloat.White;
 
+        public Font Font { get; protected set; }
+
         private DeviceBuffer vertexBuffer;
         private DeviceBuffer indexBuffer;
         private ResourceSet textureSet;
         private Texture texture;
         private TextureView textureView;
+        private TextCache textCache;
 
         public Text(TextRenderer renderer, string text)
         {
@@ -52,19 +55,41 @@ namespace TextRender
 
             VertexPositionTextureColor[] quadVertices =
             {
-                new VertexPositionTextureColor(topLeft, new Vector2(0f, 0f), RgbaFloat.Yellow),
-                new VertexPositionTextureColor(topRight, new Vector2(1f, 0f), RgbaFloat.Yellow),
-                new VertexPositionTextureColor(bottomLeft, new Vector2(0f, 1f), RgbaFloat.Yellow),
-                new VertexPositionTextureColor(bottomRight, new Vector2(1f, 1f), RgbaFloat.Yellow)
+                new VertexPositionTextureColor(topLeft, new Vector2(0f, 0f), RgbaFloat.White),
+                new VertexPositionTextureColor(topRight, new Vector2(1f, 0f), RgbaFloat.White),
+                new VertexPositionTextureColor(bottomLeft, new Vector2(0f, 1f), RgbaFloat.White),
+                new VertexPositionTextureColor(bottomRight, new Vector2(1f, 1f), RgbaFloat.White)
             };
             ushort[] quadIndices = { 0, 1, 2, 3 };
 
             device.UpdateBuffer(vertexBuffer, 0, quadVertices);
             device.UpdateBuffer(indexBuffer, 0, quadIndices);
 
-            var fontCache = AddDisposable(new TextCache(device));
-            var font = SystemFonts.CreateFont(FontName, FontSize, FontStyle);
-            texture = AddDisposable(fontCache.GetTextTexture(Content, font, TextAlignment, Color, Size));
+            textCache = AddDisposable(new TextCache(device));
+            Font = SystemFonts.CreateFont(FontName, FontSize, FontStyle);
+            texture = AddDisposable(textCache.GetTextTexture(Content, Font, TextAlignment, Color, Size));
+            textureView = AddDisposable(device.ResourceFactory.CreateTextureView(texture));
+
+            textureSet = AddDisposable(device.ResourceFactory.CreateResourceSet(new ResourceSetDescription(
+                _renderer.Shader.TextureLayout,
+                textureView,
+                device.Aniso4xSampler)));
+        }
+
+        public void Recreate()
+        {
+            var device = _renderer.Device;
+
+            if (texture != null)
+            {
+                RemoveAndDispose(ref textureView);
+                RemoveAndDispose(ref texture);
+                RemoveAndDispose(ref textCache);
+            }
+
+            textCache = AddDisposable(new TextCache(device));
+            Font = SystemFonts.CreateFont(FontName, FontSize, FontStyle);
+            texture = AddDisposable(textCache.GetTextTexture(Content, Font, TextAlignment, Color, Size));
             textureView = AddDisposable(device.ResourceFactory.CreateTextureView(texture));
 
             textureSet = AddDisposable(device.ResourceFactory.CreateResourceSet(new ResourceSetDescription(
