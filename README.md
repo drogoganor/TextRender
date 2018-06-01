@@ -12,7 +12,7 @@ TextRender generates text on the CPU using [SixLabors](https://github.com/SixLab
 
 Veldrid font texture generation thanks to [OpenSAGE](https://github.com/OpenSAGE/OpenSAGE) TextCache and ResourcePool classes (LGPL-3.0).
 
-Shaders are included in the TextRender.Veldrid library as embedded resources. They can be compiled separately using the TextRender.Veldrid.Resources project.
+Shaders are included in the TextRender library as embedded resources. They can be compiled separately using the TextRender.Resources project.
 
 TextRender is available on NuGet:
 
