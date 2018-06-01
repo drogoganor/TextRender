@@ -1,20 +1,22 @@
 # TextRender for Veldrid
 
-A simple text rendering library for the [Veldrid](https://github.com/mellinoe/veldrid) library and .NET Core.
+A WIP simple text rendering library for the [Veldrid](https://github.com/mellinoe/veldrid) library and .NET Core.
 
 ![Preview](https://github.com/drogoganor/TextRender/blob/master/images/Example.png)
+
+## About
+
+This library is intended more as a tech demo of font rendering using Veldrid than for any serious use in your application. It's only been tested on Windows. Veldrid already supports a full user interface using [dear ImGui](https://github.com/ocornut/imgui) which I would recommend for your text rendering needs.
+
+TextRender generates text on the CPU using [SixLabors](https://github.com/SixLabors) libraries (MIT). Text is rendered in an orthographic projection (2D).
+
+Veldrid font texture generation thanks to [OpenSAGE](https://github.com/OpenSAGE/OpenSAGE) TextCache and ResourcePool classes (LGPL-3.0).
+
+Shaders are included in the TextRender.Veldrid library as embedded resources. They can be compiled separately using the TextRender.Veldrid.Resources project.
 
 TextRender is available on NuGet:
 
 [![NuGet](https://img.shields.io/nuget/v/TextRender.Veldrid.svg)](https://www.nuget.org/packages/TextRender.Veldrid)
-
-## About
-
-Generates text on the CPU using [SixLabors](https://github.com/SixLabors) libraries. Renders text using an orthographic projection (2D).
-
-Veldrid font texture generation thanks to [OpenSAGE](https://github.com/OpenSAGE/OpenSAGE).
-
-Shaders are included in the TextRender.Veldrid library as embedded resources. They can be compiled separately using the TextRender.Veldrid.Shaders project.
 
 ## Basic usage
 
