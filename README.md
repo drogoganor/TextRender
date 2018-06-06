@@ -16,7 +16,7 @@ Shaders are included in the TextRender library as embedded resources. They can b
 
 TextRender is available on NuGet:
 
-[![NuGet](https://img.shields.io/nuget/v/TextRender.Veldrid.svg)](https://www.nuget.org/packages/TextRender.Veldrid)
+[![NuGet](https://img.shields.io/nuget/v/TextRender.svg)](https://www.nuget.org/packages/TextRender)
 
 ## Basic usage
 

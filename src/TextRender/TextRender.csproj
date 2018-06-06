@@ -1,21 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Title>TextRender.Veldrid</Title>
+    <Title>TextRender</Title>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>DMW</Authors>
     <Company />
-    <Product>TextRender.Veldrid</Product>
+    <Product>TextRender</Product>
     <Description>A simple text rendering library for Veldrid and .NET Core.</Description>
     <PackageProjectUrl>https://github.com/drogoganor/TextRender</PackageProjectUrl>
     <RepositoryUrl>https://github.com/drogoganor/TextRender.git</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>veldrid, text</PackageTags>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
-    <Version>1.0.2</Version>
-    <PackageId>TextRender.Veldrid</PackageId>
+    <Version>1.0.0</Version>
+    <PackageId>TextRender</PackageId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
