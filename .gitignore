@@ -1,7 +1,7 @@
-src/.vs/
-src/TextRender.Example/bin/
-src/TextRender.Example/obj/
-src/TextRender.Resources/bin/
-src/TextRender.Resources/obj/
-src/TextRender/bin/
-src/TextRender/obj/
+.vs/
+TextRender.Example/bin/
+TextRender.Example/obj/
+TextRender.Resources/bin/
+TextRender.Resources/obj/
+TextRender/bin/
+TextRender/obj/
