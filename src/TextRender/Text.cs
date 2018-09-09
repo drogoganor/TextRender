@@ -102,7 +102,14 @@ namespace TextRender
         {
             var cl = _renderer.CommandList;
 
-            cl.UpdateBuffer(_renderer.Shader.PositionBuffer, 0, new Vector4(Position, 0, 0));
+            cl.UpdateBuffer(_renderer.Shader.ProjectionBuffer, 0, 
+                Matrix4x4.CreateOrthographicOffCenter(
+                    0, 
+                    _renderer.Device.SwapchainFramebuffer.Width, 
+                    _renderer.Device.SwapchainFramebuffer.Height, 
+                    0, 0, 1));
+            cl.UpdateBuffer(_renderer.Shader.WorldBuffer, 0, Matrix4x4.CreateTranslation(new Vector3(Position, 0)));
+
             cl.SetVertexBuffer(0, vertexBuffer);
             cl.SetIndexBuffer(indexBuffer, IndexFormat.UInt16);
             cl.SetGraphicsResourceSet(0, _renderer.Shader.ProjViewSet);

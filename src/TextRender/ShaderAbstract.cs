@@ -1,11 +1,11 @@
-﻿using OpenSage;
-using System.IO;
-using System.Runtime.InteropServices;
+﻿using System.IO;
+using OpenSage;
 using Veldrid;
+using Veldrid.SPIRV;
 
 namespace TextRender
 {
-    internal class ShaderAbstract : DisposableBase
+    public class ShaderAbstract : DisposableBase
     {
         public string Name { get; protected set; }
         public Shader VertexShader { get; protected set; }
@@ -16,17 +16,19 @@ namespace TextRender
         {
             Name = name;
 
-            VertexShader = AddDisposable(LoadShader(factory, ShaderStages.Vertex, "VS"));
-            FragmentShader = AddDisposable(LoadShader(factory, ShaderStages.Fragment, "FS"));
+            var vertSpirvBytes = ReadEmbeddedAssetBytes($"TextRender.Shaders.{Name}.vert.spv");
+            var fragSpirvBytes = ReadEmbeddedAssetBytes($"TextRender.Shaders.{Name}.frag.spv");
+
+            var shaders = factory.CreateFromSpirv(
+                new ShaderDescription(ShaderStages.Vertex, vertSpirvBytes, "main"),
+                new ShaderDescription(ShaderStages.Fragment, fragSpirvBytes, "main")
+                );
+
+            VertexShader = shaders[0];
+            FragmentShader = shaders[1];
         }
         
         protected Stream OpenEmbeddedAssetStream(string name) => GetType().Assembly.GetManifestResourceStream(name);
-
-        protected Shader LoadShader(ResourceFactory factory, ShaderStages stage, string entryPoint)
-        {
-            string name = $"TextRender.Resources.{Name}-{stage.ToString().ToLower()}.{GetExtension(factory.BackendType)}";
-            return factory.CreateShader(new ShaderDescription(stage, ReadEmbeddedAssetBytes(name), entryPoint));
-        }
 
         protected byte[] ReadEmbeddedAssetBytes(string name)
         {
@@ -39,21 +41,6 @@ namespace TextRender
                     return bytes;
                 }
             }
-        }
-
-        private static string GetExtension(GraphicsBackend backendType)
-        {
-            bool isMacOS = RuntimeInformation.OSDescription.Contains("Darwin");
-
-            return (backendType == GraphicsBackend.Direct3D11)
-                ? "hlsl.bytes"
-                : (backendType == GraphicsBackend.Vulkan)
-                    ? "450.glsl.spv"
-                    : (backendType == GraphicsBackend.Metal)
-                        ? isMacOS ? "metallib" : "ios.metallib"
-                        : (backendType == GraphicsBackend.OpenGL)
-                            ? "330.glsl"
-                            : "300.glsles";
         }
     }
 }

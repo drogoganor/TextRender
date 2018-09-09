@@ -1,11 +1,11 @@
 ﻿using Veldrid;
 
-namespace TextRender.Shaders
+namespace TextRender
 {
-    internal class TextShader : ShaderAbstract
+    public class TextShader : ShaderAbstract
     {
         public DeviceBuffer ProjectionBuffer;
-        public DeviceBuffer PositionBuffer;
+        public DeviceBuffer WorldBuffer;
         public ResourceLayout ProjViewLayout;
         public ResourceLayout TextureLayout;
 
@@ -14,28 +14,28 @@ namespace TextRender.Shaders
         public TextShader(ResourceFactory factory) : base(factory, "Text")
         {
             Layout = new VertexLayoutDescription(
-                        new VertexElementDescription("Position", VertexElementSemantic.Position, VertexElementFormat.Float2),
+                        new VertexElementDescription("Position", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2),
                         new VertexElementDescription("TexCoords", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2),
-                        new VertexElementDescription("Color", VertexElementSemantic.Color, VertexElementFormat.Float4));
+                        new VertexElementDescription("Color", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float4));
 
             ProjectionBuffer = factory.CreateBuffer(new BufferDescription(64, BufferUsage.UniformBuffer));
-            PositionBuffer = factory.CreateBuffer(new BufferDescription(16, BufferUsage.UniformBuffer));
+            WorldBuffer = factory.CreateBuffer(new BufferDescription(64, BufferUsage.UniformBuffer));
 
             ProjViewLayout = AddDisposable(factory.CreateResourceLayout(
                 new ResourceLayoutDescription(
                     new ResourceLayoutElementDescription("Projection", ResourceKind.UniformBuffer, ShaderStages.Vertex),
-                    new ResourceLayoutElementDescription("Position", ResourceKind.UniformBuffer, ShaderStages.Vertex))
+                    new ResourceLayoutElementDescription("World", ResourceKind.UniformBuffer, ShaderStages.Vertex))
                     ));
 
             TextureLayout = AddDisposable(factory.CreateResourceLayout(
                 new ResourceLayoutDescription(
-                    new ResourceLayoutElementDescription("SurfaceTexture", ResourceKind.TextureReadOnly, ShaderStages.Fragment),
-                    new ResourceLayoutElementDescription("SurfaceSampler", ResourceKind.Sampler, ShaderStages.Fragment))));
+                    new ResourceLayoutElementDescription("SourceTexture", ResourceKind.TextureReadOnly, ShaderStages.Fragment),
+                    new ResourceLayoutElementDescription("SourceSampler", ResourceKind.Sampler, ShaderStages.Fragment))));
 
             ProjViewSet = AddDisposable(factory.CreateResourceSet(new ResourceSetDescription(
                 ProjViewLayout,
                 ProjectionBuffer,
-                PositionBuffer)));
+                WorldBuffer)));
         }
 
         public void UpdateBuffers()

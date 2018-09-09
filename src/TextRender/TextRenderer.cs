@@ -1,6 +1,5 @@
-﻿using OpenSage;
-using System.Numerics;
-using TextRender.Shaders;
+﻿using System.Numerics;
+using OpenSage;
 using Veldrid;
 
 namespace TextRender
