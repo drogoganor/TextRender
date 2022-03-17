@@ -91,4 +91,3 @@ textRenderer.Dispose();
 
   * [Veldrid](https://github.com/mellinoe/veldrid)
   * [SixLabors](https://github.com/SixLabors)
-  * [OpenSAGE](https://github.com/OpenSAGE/OpenSAGE)
