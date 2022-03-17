@@ -49,14 +49,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SixLabors.Core" Version="1.0.0-ci0007" />
-    <PackageReference Include="SixLabors.Fonts" Version="1.0.0-ci0022" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-dev001351" />
-    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-dev001351" />
-    <PackageReference Include="SixLabors.Shapes" Version="1.0.0-ci0018" />
-    <PackageReference Include="SixLabors.Shapes.Text" Version="1.0.0-ci0018" />
-    <PackageReference Include="Veldrid" Version="4.4.0" />
-    <PackageReference Include="Veldrid.SPIRV" Version="1.0.0-beta4" />
+    <PackageReference Include="SixLabors.Fonts" Version="1.0.0-beta16" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.0.0" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta14" />
+    <PackageReference Include="Veldrid" Version="4.9.0-beta1" />
+    <PackageReference Include="Veldrid.SPIRV" Version="1.0.14" />
   </ItemGroup>
 
 </Project>

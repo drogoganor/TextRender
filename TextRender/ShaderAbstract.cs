@@ -1,11 +1,10 @@
 ﻿using System.IO;
-using OpenSage;
 using Veldrid;
 using Veldrid.SPIRV;
 
 namespace TextRender
 {
-    public class ShaderAbstract : DisposableBase
+    public class ShaderAbstract : DisposableManager
     {
         public string Name { get; protected set; }
         public Shader VertexShader { get; protected set; }
