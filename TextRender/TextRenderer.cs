@@ -1,10 +1,9 @@
 ﻿using System.Numerics;
-using OpenSage;
 using Veldrid;
 
 namespace TextRender
 {
-    public class TextRenderer : DisposableBase
+    public class TextRenderer : DisposableManager
     {
         internal GraphicsDevice Device { get; private set; }
         internal TextShader Shader { get; private set; }

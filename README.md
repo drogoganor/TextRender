@@ -10,7 +10,7 @@ This library is intended more as a tech demo of font rendering using Veldrid tha
 
 TextRender generates text on the CPU using [SixLabors](https://github.com/SixLabors) libraries (MIT). Text is rendered in an orthographic projection (2D).
 
-Veldrid font texture generation thanks to [OpenSAGE](https://github.com/OpenSAGE/OpenSAGE) TextCache and ResourcePool classes (LGPL-3.0).
+Veldrid font texture generation formerly thanks to [OpenSAGE](https://github.com/OpenSAGE/OpenSAGE) TextCache and ResourcePool classes (LGPL-3.0), Currently uses my own implementation.
 
 Shaders are included in the TextRender library as embedded resources. They can be compiled separately using the TextRender.Resources project.
 
@@ -91,4 +91,3 @@ textRenderer.Dispose();
 
   * [Veldrid](https://github.com/mellinoe/veldrid)
   * [SixLabors](https://github.com/SixLabors)
-  * [OpenSAGE](https://github.com/OpenSAGE/OpenSAGE)

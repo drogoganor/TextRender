@@ -1,11 +1,10 @@
-﻿using OpenSage;
-using SixLabors.Fonts;
+﻿using SixLabors.Fonts;
 using System.Numerics;
 using Veldrid;
 
 namespace TextRender
 {
-    public class Text : DisposableBase
+    public class Text : DisposableManager
     {
         private TextRenderer _renderer;
 
