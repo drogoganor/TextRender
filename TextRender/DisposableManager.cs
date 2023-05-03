@@ -20,14 +20,14 @@ public class DisposableManager : IDisposable
     {
         if (disposing)
         {
-            for (int index = 0; index < _disposables.Count; index++)
+            foreach (IDisposable disposable in _disposables)
             {
-                _disposables[index].Dispose();
+                disposable.Dispose();
             }
         }
     }
 
-    public void Dispose()
+    public virtual void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
