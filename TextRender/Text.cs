@@ -1,5 +1,5 @@
-﻿using SixLabors.Fonts;
-using System.Numerics;
+﻿using System.Numerics;
+using SixLabors.Fonts;
 using Veldrid;
 
 namespace TextRender
@@ -10,7 +10,7 @@ namespace TextRender
 
         public Vector2 Position { get; set; }
         public Vector2 Size { get; set; } = new Vector2(200, 100);
-        public string Content { get; set; } = string.Empty;
+        public string Content { get; set; }
         public int FontSize { get; set; } = 12;
         public string FontName { get; set; } = "Arial";
         public FontStyle FontStyle { get; set; } = FontStyle.Regular;
@@ -115,9 +115,9 @@ namespace TextRender
             cl.SetGraphicsResourceSet(1, textureSet);
             
             cl.DrawIndexed(
-                indexCount: (uint)4,
+                indexCount: 4,
                 instanceCount: 1,
-                indexStart: (uint)0,
+                indexStart: 0,
                 vertexOffset: 0,
                 instanceStart: 0);
         }
@@ -131,5 +131,6 @@ namespace TextRender
             DrawBatched();
             _renderer.EndDraw();
         }
+        
     }
 }

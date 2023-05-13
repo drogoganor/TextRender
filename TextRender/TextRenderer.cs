@@ -35,8 +35,8 @@ namespace TextRender
             pipelineDescription.PrimitiveTopology = PrimitiveTopology.TriangleStrip;
             pipelineDescription.ResourceLayouts = new[] { Shader.ProjViewLayout, Shader.TextureLayout };
             pipelineDescription.ShaderSet = new ShaderSetDescription(
-                vertexLayouts: new VertexLayoutDescription[] { Shader.Layout },
-                shaders: new Shader[] { Shader.VertexShader, Shader.FragmentShader });
+                vertexLayouts: new[] { Shader.Layout },
+                shaders: new[] { Shader.VertexShader, Shader.FragmentShader });
             pipelineDescription.Outputs = Device.SwapchainFramebuffer.OutputDescription;
 
             _pipeline = AddDisposable(factory.CreateGraphicsPipeline(pipelineDescription));
